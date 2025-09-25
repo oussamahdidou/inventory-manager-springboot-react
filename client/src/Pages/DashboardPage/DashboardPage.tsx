@@ -4,7 +4,7 @@ import PieCharts from "../../Components/PieCharts/PieCharts";
 import RadialBar from "../../Components/RadialBar/RadialBar";
 import { Stats } from "../../helpers/declarations";
 import ItemSkeleton from "../../Components/ItemSkeleton/ItemSkeleton";
-import { GetDashboardStats } from "../../Services/ChartsService";
+import { GetDashboardStats } from "../../Services/ChartService";
 import NavBar from "../../Components/NavBar/NavBar";
 import { useAuth } from "../../Contexts/useAuth";
 import SideNav from "../../Components/SideNav/SideNav";
@@ -15,33 +15,35 @@ const DashboardPage = (props: Props) => {
   const [stats, setStats] = useState<Stats | null>(null);
   const [isLoading, setLoading] = useState<boolean>(true);
   const { isLoggedIn } = useAuth();
+
   useEffect(() => {
-    const GetStats = async () => {
+    const getStats = async () => {
       setLoading(true);
-      const reponse = await GetDashboardStats();
-      setStats(reponse);
+      const response = await GetDashboardStats();
+      setStats(response);
       setLoading(false);
     };
-    GetStats();
+    getStats();
   }, []);
 
   return (
-    <div className={`w-full m-0 ${isLoggedIn() ? "ps-64" : "p-0"}`}>
-      {isLoggedIn() ? <SideNav></SideNav> : <></>}
-      <NavBar></NavBar>
-      <div className="container contain-content mx-auto max-w-full grid grid-cols-12 justify-center ">
+    // <div className="relative min-h-screen">
+    
+    <div className={`w-full bg-[#171717] m-0 ${isLoggedIn() ? "ps-0" : "p-0"}`}>
+      {isLoggedIn() && <SideNav />}
+      <NavBar />
+      <div className="container contain-content mx-auto max-w-full grid grid-cols-12 justify-center bg-[#171717]">
+        {/* Articles */}
         <div className="p-3 col-span-3">
           {isLoading ? (
-            <ItemSkeleton isLoading={isLoading}></ItemSkeleton>
+            <ItemSkeleton isLoading={isLoading} />
           ) : (
-            <div className="bg-yellow-400  px-3 py-2 rounded-lg flex justify-start gap-4 items-center">
-              <div>
+            <StatCard
+              color="bg-yellow-400"
+              icon={
                 <svg
                   className="w-12 h-12 text-white"
-                  aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -51,91 +53,80 @@ const DashboardPage = (props: Props) => {
                     clipRule="evenodd"
                   />
                 </svg>
-              </div>
-              <div>
-                <h1 className="font-sans text-5xl  text-white">
-                  {stats?.nombreArticle}
-                </h1>
-                <p className="font-sans text-xl  text-white">Articles</p>
-              </div>
-            </div>
+              }
+              value={stats?.numberOfArticles}
+              label="Articles"
+            />
           )}
         </div>
+
+        {/* Suppliers */}
         <div className="p-3 col-span-3">
           {isLoading ? (
-            <ItemSkeleton isLoading={isLoading}></ItemSkeleton>
+            <ItemSkeleton isLoading={isLoading} />
           ) : (
-            <div className="bg-blue-400  px-3 py-2 rounded-lg flex justify-start gap-4 items-center">
-              <div>
+            <StatCard
+              color="bg-blue-400"
+              icon={
                 <svg
-                  className="w-16 h-16 text-white "
-                  aria-hidden="true"
+                  className="w-16 h-16 text-white"
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path
                     fillRule="evenodd"
-                    d="M4 4a2 2 0 0 0-2 2v9a1 1 0 0 0 1 1h.535a3.5 3.5 0 1 0 6.93 0h3.07a3.5 3.5 0 1 0 6.93 0H21a1 1 0 0 0 1-1v-4a.999.999 0 0 0-.106-.447l-2-4A1 1 0 0 0 19 6h-5a2 2 0 0 0-2-2H4Zm14.192 11.59.016.02a1.5 1.5 0 1 1-.016-.021Zm-10 0 .016.02a1.5 1.5 0 1 1-.016-.021Zm5.806-5.572v-2.02h4.396l1 2.02h-5.396Z"
+                    d="M4 4a2 2 0 0 0-2 2v9a1 1 0 0 0 1 1h.535a3.5 3.5 0 1 0 6.93 0h3.07a3.5 3.5 0 1 0 6.93 0H21a1 1 0 0 0 1-1v-4a.999.999 0 0 0-.106-.447l-2-4A1 1 0 0 0 19 6h-5a2 2 0 0 0-2-2H4Z"
                     clipRule="evenodd"
                   />
                 </svg>
-              </div>
-              <div>
-                <h1 className="font-sans text-5xl  text-white">
-                  {stats?.nombreFournisseur}
-                </h1>
-                <p className="font-sans text-xl  text-white">Fournisseurs</p>
-              </div>
-            </div>
+              }
+              value={stats?.numberOfSuppliers}
+              label="Suppliers"
+            />
           )}
         </div>
+
+        {/* Out of Stock */}
         <div className="p-3 col-span-3">
           {isLoading ? (
-            <ItemSkeleton isLoading={isLoading}></ItemSkeleton>
+            <ItemSkeleton isLoading={isLoading} />
           ) : (
-            <div className="bg-red-400  px-3 py-2 rounded-lg flex justify-start gap-4 items-center">
-              <div>
+            <StatCard
+              color="bg-red-400"
+              icon={
                 <svg
                   className="w-12 h-12 text-white"
-                  aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
                   fill="none"
                   viewBox="0 0 24 24"
                 >
                   <path
                     stroke="currentColor"
                     strokeLinecap="round"
+                    strokeLinejoin="round"
                     strokeWidth="2"
-                    d="m6 6 12 12m3-6a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                    d="M6 6l12 12M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"
                   />
                 </svg>
-              </div>
-              <div>
-                <h1 className="font-sans text-5xl  text-white">
-                  {stats?.stockEpuisee}
-                </h1>
-                <p className="font-sans text-xl  text-white">stock épuisé</p>
-              </div>
-            </div>
+              }
+              value={stats?.outOfStock}
+              label="Out of Stock"
+            />
           )}
         </div>
+
+        {/* Categories */}
         <div className="p-3 col-span-3">
           {isLoading ? (
-            <ItemSkeleton isLoading={isLoading}></ItemSkeleton>
+            <ItemSkeleton isLoading={isLoading} />
           ) : (
-            <div className="bg-green-400  px-3 py-2 rounded-lg flex justify-start gap-4 items-center">
-              <div>
+            <StatCard
+              color="bg-green-400"
+              icon={
                 <svg
                   className="w-12 h-12 text-white"
-                  aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -145,32 +136,55 @@ const DashboardPage = (props: Props) => {
                     clipRule="evenodd"
                   />
                 </svg>
-              </div>
-              <div>
-                <h1 className="font-sans text-5xl  text-white">
-                  {stats?.nombreCategorie}
-                </h1>
-                <p className="font-sans text-xl  text-white">Categories</p>
-              </div>
-            </div>
+              }
+              value={stats?.numberOfCategorys}
+              label="Categorys"
+            />
           )}
         </div>
+
+        {/* Charts */}
         <div className="px-3 col-span-8">
-          <div className=" bg-white px-3 py-2 rounded-lg">
-            <AreaCharts></AreaCharts>
+          <div className="bg-white px-3 py-2 rounded-lg">
+            <AreaCharts />
           </div>
         </div>
-        <div className="px-3 col-span-4 flex  justify-center flex-col gap-3 aspect-video">
-          <div className=" bg-white px-3 py-2 rounded-lg flex items-center">
-            <PieCharts></PieCharts>
+        <div className="px-3 col-span-4 flex justify-center flex-col gap-3 aspect-video">
+          <div className=" px-3 py-2 rounded-lg flex items-center">
+            <PieCharts />
           </div>
-          <div className=" bg-white px-3  rounded-lg flex items-start h-max">
-            <RadialBar></RadialBar>
+          <div className=" px-3 rounded-lg flex items-start h-max">
+            <RadialBar />
           </div>
         </div>
       </div>
-    </div>
+      </div>
+      // </div>  
+     
   );
 };
+
+// Reusable stat card component
+const StatCard = ({
+  color,
+  icon,
+  value,
+  label,
+}: {
+  color: string;
+  icon: React.ReactNode;
+  value?: number;
+  label: string;
+}) => (
+  <div
+    className={`${color} px-3 py-2 rounded-lg flex justify-start gap-4 items-center`}
+  >
+    <div>{icon}</div>
+    <div>
+      <h1 className="font-sans text-5xl text-white">{value ?? 0}</h1>
+      <p className="font-sans text-xl text-white">{label}</p>
+    </div>
+  </div>
+);
 
 export default DashboardPage;

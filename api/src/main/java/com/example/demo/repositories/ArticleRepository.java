@@ -5,16 +5,16 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.demo.models.Article;
-import com.example.demo.models.Categorie;
-import com.example.demo.models.Fournisseur;
+import com.example.demo.models.Category;
+import com.example.demo.models.Supplier;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
-    List<Article> findByCategorie(Categorie categorie);
+    List<Article> findByCategory(Category category);
 
-    List<Article> findByFournisseur(Fournisseur fournisseur);
+    List<Article> findBySupplier(Supplier supplier);
 
-    long countByQuantiteLessThanEqual(Integer a);
+    long countByQuantityLessThanEqual(Integer quantity);
 
-    List<Article> findByQuantiteLessThanEqual(Integer a);
+    List<Article> findByQuantityLessThanEqual(Integer quantity);
 }

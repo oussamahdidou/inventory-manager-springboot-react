@@ -1,4 +1,4 @@
-import { EntreeStock, IOStock, SortieStock } from "./declarations";
+import { StockEntry, IOStock, StockExit } from "./declarations";
 
 // utils/truncate.ts
 export const truncateText = (text: string, maxLength: number): string => {
@@ -6,25 +6,25 @@ export const truncateText = (text: string, maxLength: number): string => {
   return text.slice(0, maxLength) + "...";
 };
 export const IOMapper = (
-  entreeStock: EntreeStock[],
-  sortieStock: SortieStock[]
+  StockEntry: StockEntry[],
+  StockExit: StockExit[]
 ): IOStock[] => {
   const ioStock: IOStock[] = [
-    ...entreeStock.map((entree) => ({
-      id: entree.id,
-      type: "Entree",
-      intervenant: entree.fournisseur.nom,
-      article: entree.article.nom,
-      quantite: entree.quantite,
-      date: new Date(entree.date), // Convert string to Date
+    ...StockEntry.map((entry) => ({
+      id: entry.id,
+      type: "Entry",
+      intervenant: entry.supplier.name,
+      article: entry.article.name,
+      quantity: entry.quantity,
+      date: new Date(entry.date), // Convert string to Date
     })),
-    ...sortieStock.map((sortie) => ({
-      id: sortie.id,
-      type: "Sortie",
-      intervenant: sortie.destination,
-      article: sortie.article.nom,
-      quantite: sortie.quantite,
-      date: new Date(sortie.date), // Convert string to Date
+    ...StockExit.map((exit) => ({
+      id: exit.id,
+      type: "Exit",
+      intervenant: exit.destination,
+      article: exit.article.name,
+      quantity: exit.quantity,
+      date: new Date(exit.date), // Convert string to Date
     })),
   ].sort((a, b) => b.date.getTime() - a.date.getTime());
 

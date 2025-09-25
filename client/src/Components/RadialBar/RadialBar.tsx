@@ -12,9 +12,10 @@ const RadialBar = (props: Props) => {
       const reponse = await AllArticles();
       let charts: number = 0;
       reponse.forEach((element) => {
-        charts += element.quantite;
+        charts += element.quantity;
       });
-      setChart([(charts / 5000) | 0]);
+      console.log(charts)
+      setChart([(charts / 500) ]);
     };
     GetArticles();
   }, []);
@@ -58,7 +59,7 @@ const RadialBar = (props: Props) => {
     stroke: {
       dashArray: 4,
     },
-    labels: [`Capacite remplissage ${Chart[0] * 5} k / 500 k`], // Split into two lines
+    labels: [`capacity filling ${Chart[0] * 5} k / 500 k`], // Split into two lines
   };
 
   return (
@@ -68,7 +69,7 @@ const RadialBar = (props: Props) => {
           options={options}
           series={Chart}
           type="radialBar"
-          height={250}
+          height={250} className=" bg-gradient-to-r from-[#08D6DA] to-[#9DF8FA] text-black rounded-lg"
         />
       </div>
       <div id="html-dist"></div>

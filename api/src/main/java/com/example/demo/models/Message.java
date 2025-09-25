@@ -16,12 +16,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class Message {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String titre;
-    private String contenu;
-    private boolean estLu;
+
+    private String title;
+    private String content;
+    private boolean isRead;
     private LocalDateTime createdAt;
 
     @PrePersist

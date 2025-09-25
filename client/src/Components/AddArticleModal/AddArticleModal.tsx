@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Categorie, Fournisseur } from "../../helpers/declarations";
+import { Category, Supplier } from "../../helpers/declarations";
 import { BarcodeScanner } from "@thewirv/react-barcode-scanner";
-import { AllCategories } from "../../Services/CategorieService";
-import { AllFournisseurs } from "../../Services/FournisseurService";
+import { AllCategorys } from "../../Services/CategoryService";
+import { AllSuppliers } from "../../Services/SupplierService";
 interface ModalProps {
   isOpen: boolean;
   onClose: (data?: AddArticleDto) => void; // A function type that takes no arguments and returns void
 }
 export interface AddArticleDto {
-  nom: string;
+  name: string;
   description?: string;
   categoryId: number;
-  fournisseurId: number;
-  prix: number;
-  quantite: number;
-  codeBarre: string;
+  supplierId: number;
+  price: number;
+  quantity: number;
+  barcode: string;
 }
 const AddArticleModal = (props: ModalProps) => {
   // const handleScan = (data: string) => {
@@ -22,7 +22,7 @@ const AddArticleModal = (props: ModalProps) => {
   //     console.log(data);
   //     setFormsValues((prev) => ({
   //       ...prev,
-  //       codeBarre: data,
+  //       barcode: data,
   //     }));
   //   }
   // };
@@ -32,22 +32,22 @@ const AddArticleModal = (props: ModalProps) => {
   // };
 
   const [FormsValues, setFormsValues] = useState<AddArticleDto>({
-    nom: "",
+    name: "",
     description: "",
     categoryId: 0,
-    fournisseurId: 0,
-    prix: 0,
-    quantite: 0,
-    codeBarre: "",
+    supplierId: 0,
+    price: 0,
+    quantity: 0,
+    barcode: "",
   });
-  const [Categories, setCategories] = useState<Categorie[]>([]);
-  const [Fournisseurs, setFournisseurs] = useState<Fournisseur[]>([]);
+  const [Categorys, setCategorys] = useState<Category[]>([]);
+  const [Suppliers, setSuppliers] = useState<Supplier[]>([]);
   useEffect(() => {
     const GetEntrys = async () => {
-      const categoriesReponse = await AllCategories();
-      setCategories(categoriesReponse);
-      const fournisseursReponse = await AllFournisseurs();
-      setFournisseurs(fournisseursReponse);
+      const categoriesReponse = await AllCategorys();
+      setCategorys(categoriesReponse);
+      const SuppliersReponse = await AllSuppliers();
+      setSuppliers(SuppliersReponse);
     };
     GetEntrys();
   }, []);
@@ -111,34 +111,34 @@ const AddArticleModal = (props: ModalProps) => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   placeholder="Type product name"
                   required
-                  value={FormsValues?.nom || ""}
+                  value={FormsValues?.name || ""}
                   onChange={(e) => {
                     setFormsValues((prev) => ({
                       ...prev,
-                      nom: e.target.value,
+                      name: e.target.value,
                     }));
                   }}
                 />
               </div>
               <div className="col-span-6 sm:col-span-6">
                 <label
-                  htmlFor="quantite"
+                  htmlFor="quantity"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Quantite
+                  Quantity
                 </label>
                 <input
                   type="number"
-                  name="quantite"
-                  id="quantite"
+                  name="quantity"
+                  id="quantity"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   placeholder="999"
                   required
-                  value={FormsValues?.quantite || ""}
+                  value={FormsValues?.quantity || ""}
                   onChange={(e) => {
                     setFormsValues((prev) => ({
                       ...prev,
-                      quantite: Number(e.target.value),
+                      quantity: Number(e.target.value),
                     }));
                   }}
                 />
@@ -155,39 +155,39 @@ const AddArticleModal = (props: ModalProps) => {
                   name="price"
                   id="price"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                  placeholder="$2999"
+                  placeholder="Rs.2999"
                   required
-                  value={FormsValues?.prix || ""}
+                  value={FormsValues?.price || ""}
                   onChange={(e) => {
                     setFormsValues((prev) => ({
                       ...prev,
-                      prix: Number(e.target.value),
+                      price: Number(e.target.value),
                     }));
                   }}
                 />
               </div>
               <div className="col-span-6 sm:col-span-6">
                 <label
-                  htmlFor="fournisseur"
+                  htmlFor="Supplier"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  Fournisseur
+                  Supplier
                 </label>
                 <select
-                  value={FormsValues?.fournisseurId || ""}
+                  value={FormsValues?.supplierId || ""}
                   onChange={(e) => {
                     setFormsValues((prev) => ({
                       ...prev,
-                      fournisseurId: Number(e.target.value), // Convert the value to a number
+                      supplierId: Number(e.target.value), // Convert the value to a number
                     }));
                   }}
-                  id="fournisseur"
+                  id="Supplier"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 >
-                  <option>Select fournisseur</option>
-                  {Fournisseurs.map((fournisseur) => (
-                    <option key={fournisseur.id} value={fournisseur.id}>
-                      {fournisseur.nom}
+                  <option>Select Supplier</option>
+                  {Suppliers.map((Supplier) => (
+                    <option key={Supplier.id} value={Supplier.id}>
+                      {Supplier.name}
                     </option>
                   ))}
                 </select>
@@ -211,9 +211,9 @@ const AddArticleModal = (props: ModalProps) => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 >
                   <option value="">Select category</option>
-                  {Categories.map((categorie) => (
-                    <option key={categorie.id} value={categorie.id}>
-                      {categorie.nom}
+                  {Categorys.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.name}
                     </option>
                   ))}
                 </select>
@@ -240,33 +240,33 @@ const AddArticleModal = (props: ModalProps) => {
               </div>
               <div className="col-span-12">
                 <label
-                  htmlFor="codeBarre"
+                  htmlFor="barcode"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  CodeBarre
+                  Barcode
                 </label>
                 <input
                   type="text"
                   name="name"
                   id="name"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                  placeholder="Type  codeBarre"
+                  placeholder="Type  barcode"
                   required
-                  value={FormsValues?.codeBarre || ""}
+                  value={FormsValues?.barcode || ""}
                   onChange={(e) => {
                     setFormsValues((prev) => ({
                       ...prev,
-                      codeBarre: e.target.value,
+                      barcode: e.target.value,
                     }));
                   }}
                 />
               </div>
               {/* <div className="col-span-3">
                 <label
-                  htmlFor="codeBarre"
+                  htmlFor="barcode"
                   className="block mb-2 align-top text-sm font-medium text-gray-900 dark:text-white"
                 >
-                  CodeBarre
+                  Barcode
                 </label>
                 <BarcodeScanner
 

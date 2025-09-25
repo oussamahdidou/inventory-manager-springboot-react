@@ -1,61 +1,61 @@
-export interface Fournisseur {
+export interface Supplier {
   id: number;
-  nom: string;
+  name: string;
   contact: string;
-  adresse: string;
-  telephone: string;
+  address: string;
+  phone: string;
 }
 
-export interface Categorie {
+export interface Category {
   id: number;
-  nom: string;
+  name: string;
   description: string;
 }
 
 export interface Article {
   id: number;
-  nom: string;
+  name: string;
   description: string;
-  quantite: number;
-  prix: number;
-  categorie: Categorie;
-  fournisseur: Fournisseur;
-  codeBarre: string;
+  quantity: number;
+  price: number;
+  category: Category;
+  supplier: Supplier;
+  barcode: string;
 }
 
-export interface SortieStock {
+export interface StockExit {
   id: number;
   article: Article;
-  quantite: number;
+  quantity: number;
   date: Date;
   destination: string;
 }
-export interface EntreeStock {
+export interface StockEntry {
   id: number;
   article: Article;
-  quantite: number;
+  quantity: number;
   date: Date;
-  fournisseur: Fournisseur;
+  supplier: Supplier;
 }
 export interface IOStock {
   id: number;
   type: string;
   article: string;
-  quantite: number;
+  quantity: number;
   date: Date;
   intervenant: string;
 }
 export interface Stats {
-  nombreFournisseur: number;
-  nombreArticle: number;
-  nombreCategorie: number;
-  stockEpuisee: number;
+  numberOfSuppliers: number;
+  numberOfArticles: number;
+  numberOfCategorys: number;
+  outOfStock: number;
 }
 export interface Message {
   id: number;
-  contenu: string;
-  titre: string;
-  estLu: boolean;
+  content: string;
+  title: string;
+  read: boolean;
   createdAt: Date;
 }
 export interface AuthToken {
@@ -68,5 +68,5 @@ export type UserProfile = {
 };
 export interface IOStockCharts {
   month: string;
-  totalQuantite: number;
+  totalQuantity: number;
 }

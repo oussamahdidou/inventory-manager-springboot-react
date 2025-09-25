@@ -2,12 +2,13 @@ import { AddArticleDto } from "../Components/AddArticleModal/AddArticleModal";
 import { Article } from "../helpers/declarations";
 import axios from "axios";
 
-const apiBase = "http://localhost:8080";
+const apiBase = "http://localhost:8083";
 export const AllArticles = async (): Promise<Article[]> => {
   try {
     const response = await axios.get<any>(
       `${apiBase}/Api/Article/GetAllArticles`
     );
+    console.log(response);
 
     return response.data;
   } catch (error) {
@@ -26,7 +27,7 @@ export const CreateArticle = async (
 
     return reponse.data;
   } catch (error) {
-    console.error("Error in GetAllFournisseurs:", error);
+    console.error("Error in getAllSuppliers:", error);
     return null;
   }
 };

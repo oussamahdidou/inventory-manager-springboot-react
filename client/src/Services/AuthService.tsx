@@ -1,6 +1,6 @@
 import axios from "axios";
 import { showErrorModal } from "../helpers/handlers";
-const apiBase = "http://localhost:8080";
+const apiBase = "http://localhost:8083";
 
 export const Login = async (username: string, password: string) => {
   try {
@@ -19,15 +19,18 @@ export const Register = async (
   password: string,
   role: string
 ) => {
+  console.log(email,userName,password,role)
   try {
-    const reponse = await axios.post<any>(`${apiBase}/Api/Auth/Register`, {
+    const response = await axios.post<any>(`${apiBase}/Api/Auth/Register`, {
       userName: userName,
       email: email,
       password: password,
       role: role,
     });
-    return reponse.data;
+    console.log(response);
+    return response.data;
   } catch (error: any) {
+    console.log(error);
     throw new Error(error.response);
   }
 };

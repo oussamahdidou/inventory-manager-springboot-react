@@ -2,35 +2,35 @@ import React, { useEffect, useState } from "react";
 import ApexCharts from "react-apexcharts";
 import axios from "axios";
 import {
-  GetEntreeProgress,
-  GetSortieProgress,
-} from "../../Services/ChartsService";
+  GetEntryProgress,
+  GetExitProgress,
+} from "../../Services/ChartService";
 
 type Props = {};
 
 const AreaCharts = (props: Props) => {
-  const [sortieData, setSortieData] = useState<number[]>([]);
-  const [entreeData, setEntreeData] = useState<number[]>([]);
-  const [categories, setCategories] = useState<string[]>([]);
+  const [exitData, setExitData] = useState<number[]>([]);
+  const [entryData, setEntryData] = useState<number[]>([]);
+  const [categories, setCategorys] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const sortieProgress = await GetSortieProgress();
-        const entreeProgress = await GetEntreeProgress();
+        const exitProgress = await GetExitProgress();
+        const entryProgress = await GetEntryProgress();
 
         // Extracting the data and month (assuming month format is consistent with categories)
-        const sortieQuantities = sortieProgress.map(
-          (item) => item.totalQuantite
+        const exitQuantities = exitProgress.map(
+          (item) => item.totalQuantity
         );
-        const entreeQuantities = entreeProgress.map(
-          (item) => item.totalQuantite
+        const entryQuantities = entryProgress.map(
+          (item) => item.totalQuantity
         );
-        const months = sortieProgress.map((item) => item.month); // Assuming both responses have the same months
+        const months = exitProgress.map((item) => item.month); // Assuming both responses have the same months
 
-        setSortieData(sortieQuantities);
-        setEntreeData(entreeQuantities);
-        setCategories(months);
+        setExitData(exitQuantities);
+        setEntryData(entryQuantities);
+        setCategorys(months);
       } catch (error) {
         console.error("Error fetching stock progress", error);
       }
@@ -41,12 +41,12 @@ const AreaCharts = (props: Props) => {
 
   const series = [
     {
-      name: "Entree Stock",
-      data: entreeData,
+      name: "Entry Stock",
+      data: entryData,
     },
     {
-      name: "Sortie Stock",
-      data: sortieData,
+      name: "Exit Stock",
+      data: exitData,
     },
   ];
 
@@ -80,6 +80,8 @@ const AreaCharts = (props: Props) => {
           series={series}
           type="area"
           height={350}
+         
+          className=" bg-gradient-to-r from-[#08D6DA] to-[#9DF8FA] text-black rounded-lg"
         />
       </div>
     </div>

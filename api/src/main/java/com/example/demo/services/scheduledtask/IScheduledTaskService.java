@@ -1,7 +1,5 @@
 package com.example.demo.services.scheduledtask;
 
-;
-
 public interface IScheduledTaskService {
-    void CheckStockEpouisee();
+    void checkDepletedStock();
 }

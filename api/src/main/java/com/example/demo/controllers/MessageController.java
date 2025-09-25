@@ -25,27 +25,27 @@ public class MessageController {
 
     @GetMapping("GetAllMessages")
     public ResponseEntity<List<Message>> GetAllMessages() {
-        return ResponseEntity.ok(messageService.GetAllMessages());
+        return ResponseEntity.ok(messageService.getAllMessages());
     }
 
-    @GetMapping("GetAllReadMessages")
-    public ResponseEntity<List<Message>> GetAllReadMessages() {
-        return ResponseEntity.ok(messageService.GetAllReadMessages());
+    @GetMapping("getAllMessages")
+    public ResponseEntity<List<Message>> getAllMessages() {
+        return ResponseEntity.ok(messageService.getAllMessages());
     }
 
-    @GetMapping("GetMessageById/{id}")
-    public ResponseEntity<Message> GetMessageById(@PathVariable Long id) {
-        return ResponseEntity.ok(messageService.GetMessageById(id));
+    @GetMapping("getMessageById/{id}")
+    public ResponseEntity<Message> getMessageById(@PathVariable Long id) {
+        return ResponseEntity.ok(messageService.getMessageById(id));
     }
 
     @PutMapping("MarkAsRead/{id}")
     public ResponseEntity<Message> MarkAsRead(@PathVariable Long id) {
-        return ResponseEntity.ok(messageService.MarkAsRead(id));
+        return ResponseEntity.ok(messageService.markAsRead(id));
 
     }
 
     @GetMapping("CountRead")
     public ResponseEntity<Long> CountRead() {
-        return ResponseEntity.ok(messageService.CountReadMessages());
+        return ResponseEntity.ok(messageService.countUnreadMessages());
     }
 }

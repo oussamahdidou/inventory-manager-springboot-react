@@ -1,17 +1,17 @@
 package com.example.demo.services.category;
 
 import java.util.List;
-import com.example.demo.dtos.categorie.CreateCategoryDto;
-import com.example.demo.dtos.categorie.UpdateCategoryDto;
-import com.example.demo.models.Categorie;
+
+import com.example.demo.dtos.category.CreateCategoryDto;
+import com.example.demo.dtos.category.UpdateCategoryDto;
+import com.example.demo.models.Category;
 
 public interface ICategoryService {
-    Categorie CreateCategory(CreateCategoryDto createCategoryDto);
+    Category createCategory(CreateCategoryDto createCategoryDto);
 
-    Categorie UpdateCategory(UpdateCategoryDto updateCategoryDto, Long id);
+    Category updateCategory(UpdateCategoryDto updateCategoryDto, Long id);
 
-    List<Categorie> GetAllCategories();
+    List<Category> getAllCategorys();
 
-    Categorie GetCategoryId(Long id);
-
+    Category getCategoryById(Long id);
 }

@@ -6,10 +6,14 @@ type Props = {};
 const NavBar = (props: Props) => {
   const { isLoggedIn, logout } = useAuth();
   return (
-    <div>
-      <nav className="bg-white border-gray-200 dark:bg-gray-900">
+    <div className="bg-[#171717]">
+      <nav className=" border-gray-200 dark:bg-gray-900">
         <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4">
-          <a
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-[#08D6DA] to-[#9DF8FA] bg-clip-text text-transparent font-sans">
+            InvenTrack
+          </h1>
+
+          {/* <a
             href="#"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
@@ -21,13 +25,13 @@ const NavBar = (props: Props) => {
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               Flowbite
             </span>
-          </a>
+          </a> */}
           <div className="flex items-center space-x-6 rtl:space-x-reverse">
             <a
-              href="tel:5541251234"
+              href="tel:+91-6369269540"
               className="text-sm  text-gray-500 dark:text-white hover:underline"
             >
-              (555) 412-1234
+              (+91) 6369269540
             </a>
             {!isLoggedIn() ? (
               <>

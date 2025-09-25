@@ -2,16 +2,16 @@ import React, { useState } from "react";
 
 interface ModalProps {
   isOpen: boolean;
-  onClose: (data?: AddCategorieDto) => void; // A function type that takes no arguments and returns void
+  onClose: (data?: AddCategoryDto) => void; // A function type that takes no arguments and returns void
 }
-export interface AddCategorieDto {
-  nom: string;
+export interface AddCategoryDto {
+  name: string;
   description?: string;
 }
 
 const AddCategoryModal = (props: ModalProps) => {
-  const [FormsValues, setFormsValues] = useState<AddCategorieDto>({
-    nom: "",
+  const [FormsValues, setFormsValues] = useState<AddCategoryDto>({
+    name: "",
     description: "",
   });
   return (
@@ -28,7 +28,7 @@ const AddCategoryModal = (props: ModalProps) => {
         <div className="relative  bg-white  rounded-lg shadow dark:bg-gray-700">
           <div className="flex items-center justify-center  p-4 md:p-5 border-b rounded-t dark:border-gray-600">
             <h3 className="text-lg font-semibold text-gray-900  dark:text-white">
-              Create New Categorie
+              Create New Category
             </h3>
             <button
               onClick={() => props.onClose()}
@@ -73,11 +73,11 @@ const AddCategoryModal = (props: ModalProps) => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   placeholder="Type product name"
                   required
-                  value={FormsValues?.nom || ""}
+                  value={FormsValues?.name || ""}
                   onChange={(e) => {
                     setFormsValues((prev) => ({
                       ...prev,
-                      nom: e.target.value,
+                      name: e.target.value,
                     }));
                   }}
                 />
@@ -120,7 +120,7 @@ const AddCategoryModal = (props: ModalProps) => {
                   clipRule="evenodd"
                 ></path>
               </svg>
-              Add new Categorie
+              Add new Category
             </button>
           </form>
         </div>

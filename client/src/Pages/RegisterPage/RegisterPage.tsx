@@ -1,4 +1,3 @@
-import React from "react";
 import * as Yup from "yup";
 import { useAuth } from "../../Contexts/useAuth";
 import { useForm } from "react-hook-form";
@@ -9,7 +8,7 @@ type RegisterFormInputs = {
   username: string;
   password: string;
   confirmPassword: string;
-  role: "Technicien" | "Ingenieur" | "Operateur" | "Superviseur";
+  role: "Technician" | "Engineer" | "Operator" | "Superviser";
 };
 const validation = Yup.object().shape({
   email: Yup.string().required("email is required"),
@@ -20,7 +19,7 @@ const validation = Yup.object().shape({
     .required("Confirm password is required"),
   role: Yup.string()
     .oneOf(
-      ["Technicien", "Ingenieur", "Operateur", "Superviseur"],
+      ["Technician", "Engineer", "Operator", "Superviser"],
       "Please select a valid role"
     )
     .required("Role is required"),
@@ -150,10 +149,10 @@ const RegisterPage = (props: Props) => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
                     <option value="">Select Role</option>
-                    <option value={"Technicien"}>Technicien</option>
-                    <option value={"Ingenieur"}>Ingenieur</option>
-                    <option value={"Operateur"}>Operateur</option>
-                    <option value={"Superviseur"}>Superviseur</option>
+                    <option value={"Technician"}>Technician</option>
+                    <option value={"Engineer"}>Engineer</option>
+                    <option value={"Operator"}>Operator</option>
+                    <option value={"Superviser"}>Superviser</option>
                   </select>
                   {error.errors.role ? (
                     <span className="text-red-600">
@@ -174,7 +173,7 @@ const RegisterPage = (props: Props) => {
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                 Already have an account?{" "}
                 <a
-                  href="#"
+                  href="/login"
                   className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                 >
                   Login here

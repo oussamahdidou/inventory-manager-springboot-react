@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 public class CreateArticleDto {
-    private String nom;
+    private String name;
     private String description;
-    private int quantite;
-    private double prix;
+    private int quantity;
+    private double price;
     private Long categoryId;
-    private Long fournisseurId;
-    private String codeBarre;
+    private Long supplierId;
+    private String barcode;
 }

@@ -10,52 +10,52 @@ const ArticleTable = (props: Props) => {
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <thead className="text-xs text-gray-900 uppercase bg-gradient-to-l from-[#08D6DA] to-[#9DF8FA] dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
                 Article
               </th>
               <th scope="col" className="px-6 py-3">
-                Categorie
+                Category
               </th>
               <th scope="col" className="px-6 py-3">
-                Fournisseur
+                Supplier
               </th>
               <th scope="col" className="px-6 py-3">
-                Prix
+                price
               </th>
               <th scope="col" className="px-6 py-3">
-                Quantite
+                Quantity
               </th>
-              <th scope="col" className="px-6 py-3">
+              {/* <th scope="col" className="px-6 py-3">
                 Action
-              </th>
+              </th> */}
             </tr>
           </thead>
           <tbody>
             {props.articles.map((article) => (
               <tr
                 key={article.id}
-                className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+                className="bg-gradient-to-r from-[#08D6DA] to-[#9DF8FA] odd:dark:bg-gray-900 border-none  even:dark:bg-gray-800 border-b dark:border-gray-700"
               >
                 <th
                   scope="row"
                   className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
-                  {article.nom}
+                  {article.name}
                 </th>
-                <td className="px-6 py-4">{article.categorie.nom}</td>
-                <td className="px-6 py-4">{article.fournisseur.nom}</td>
-                <td className="px-6 py-4">${article.prix}</td>
-                <td className="px-6 py-4">{article.quantite}</td>
-                <td className="px-6 py-4">
+                <td className="px-6 py-4 text-black ">{article.category?.name}</td>
+                <td className="px-6 py-4 text-black ">{article.supplier?.name}</td>
+                <td className="px-6 py-4 text-black ">Rs.{article.price}</td>
+                <td className="px-6 py-4 text-black ">{article.quantity}</td>
+                {/* <td className="px-6 py-4 text-black ">
                   <a
                     href="#"
                     className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                   >
                     Edit
                   </a>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>

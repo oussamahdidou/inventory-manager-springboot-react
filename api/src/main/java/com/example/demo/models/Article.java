@@ -19,16 +19,16 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nom;
+    private String name;
     private String description;
-    private int quantite;
-    private double prix;
+    private int quantity;
+    private double price;
 
     @ManyToOne
-    private Categorie categorie;
+    private Category category;
 
     @ManyToOne
-    private Fournisseur fournisseur;
+    private Supplier supplier;
 
-    private String codeBarre;
+    private String barcode;
 }

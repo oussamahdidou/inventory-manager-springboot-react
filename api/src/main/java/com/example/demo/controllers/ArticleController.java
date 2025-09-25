@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 @RestController
 @RequestMapping("/Api/Article/")
 public class ArticleController {
+    
     @Autowired
     private final IArticleService articleService;
 
@@ -28,29 +29,27 @@ public class ArticleController {
     }
 
     @GetMapping("GetAllArticles")
-    public ResponseEntity<List<Article>> GetAllArticles() {
-
-        return ResponseEntity.ok(articleService.GetAllArticles());
+    public ResponseEntity<List<Article>> getAllArticles() {
+        return ResponseEntity.ok(articleService.getAllArticles());
     }
 
-    @GetMapping("GetArticlesByCategoriy/{id}")
-    public ResponseEntity<List<Article>> GetArticlesByCategoriy(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(articleService.GetAllArticlesByCategorie(id));
+    @GetMapping("GetArticlesByCategory/{id}")
+    public ResponseEntity<List<Article>> getArticlesByCategory(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(articleService.getAllArticlesByCategory(id));
     }
 
-    @GetMapping("GetArticlesByFournisseur/{id}")
-    public ResponseEntity<List<Article>> GetArticlesByFournisseur(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(articleService.GetAllArticlesByFournisseur(id));
+    @GetMapping("GetArticlesBySupplier/{id}")
+    public ResponseEntity<List<Article>> getArticlesBySupplier(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(articleService.getAllArticlesBySupplier(id));
     }
 
     @PostMapping("CreateArticle")
-    public ResponseEntity<Article> CreateArticle(@RequestBody CreateArticleDto article) {
-        return ResponseEntity.ok(articleService.CreateArticle(article));
+    public ResponseEntity<Article> createArticle(@RequestBody CreateArticleDto articleDto) {
+        return ResponseEntity.ok(articleService.createArticle(articleDto));
     }
 
     @PutMapping("UpdateArticle/{id}")
-    public ResponseEntity<Article> UpdateArticle(@PathVariable("id") Long id, @RequestBody UpdateArticleDto Article) {
-
-        return ResponseEntity.ok(articleService.UpdateArticle(Article, id));
+    public ResponseEntity<Article> updateArticle(@PathVariable("id") Long id, @RequestBody UpdateArticleDto articleDto) {
+        return ResponseEntity.ok(articleService.updateArticle(articleDto, id));
     }
 }

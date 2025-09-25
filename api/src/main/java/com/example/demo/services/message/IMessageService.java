@@ -5,13 +5,13 @@ import java.util.List;
 import com.example.demo.models.Message;
 
 public interface IMessageService {
-    List<Message> GetAllMessages();
+    List<Message> getAllMessages();
 
-    List<Message> GetAllReadMessages();
+    List<Message> getAllReadMessages();
 
-    Message MarkAsRead(Long Id);
+    Message markAsRead(Long id);
 
-    Message GetMessageById(Long Id);
+    Message getMessageById(Long id);
 
-    long CountReadMessages();
+    long countUnreadMessages();
 }

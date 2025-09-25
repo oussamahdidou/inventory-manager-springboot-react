@@ -19,30 +19,27 @@ public class ScheduledTaskService implements IScheduledTaskService {
     private final MessageRepository messageRepository;
 
     public ScheduledTaskService(ArticleRepository articleRepository, MessageRepository messageRepository,
-            MessageRepository messageRepository2) {
+                                 MessageRepository messageRepository2) {
         this.articleRepository = articleRepository;
         this.messageRepository = messageRepository2;
-
     }
 
     @Override
     @Scheduled(cron = "0 0 8 * * *")
-    public void CheckStockEpouisee() {
-        List<Article> articles = articleRepository.findByQuantiteLessThanEqual(10);
+    public void checkDepletedStock() {
+        List<Article> articles = articleRepository.findByQuantityLessThanEqual(10);
         for (Article article : articles) {
             Message message = new Message();
-            message.setEstLu(false);
-            message.setContenu("Article : " + article.getNom() +
-                    "\nL'article " + article.getNom() + " est actuellement en rupture de stock." +
-                    "\nNous vous recommandons de prendre les mesures suivantes :" +
-                    "\n\n1. Notifier le fournisseur pour un réapprovisionnement rapide." +
-                    "\n2. Vérifier les alternatives disponibles pour proposer des articles similaires." +
-                    "\n3. Suivre les notifications pour être informé lorsque l'article sera de nouveau disponible." +
-                    "\n\nNous vous tiendrons informé(e) dès que l’article sera réapprovisionné.");
-            message.setTitre("Article " + article.getNom() + " est actuellement en rupture de stock.");
+            message.setRead(false);
+            message.setContent("Item: " + article.getName() +
+                    "\nThe item " + article.getName() + " is currently out of stock." +
+                    "\nWe recommend taking the following actions:" +
+                    "\n\n1. Notify the supplier for a quick restock." +
+                    "\n2. Check for available alternatives to offer similar items." +
+                    "\n3. Follow notifications to be informed when the item is back in stock." +
+                    "\n\nWe will keep you updated as soon as the item is restocked.");
+            message.setTitle("Item " + article.getName() + " is currently out of stock.");
             messageRepository.save(message);
         }
-
     }
-
 }

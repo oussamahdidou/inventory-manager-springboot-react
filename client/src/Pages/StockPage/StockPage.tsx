@@ -24,6 +24,7 @@ const StockPage = (props: Props) => {
     const GetAllArticles = async () => {
       setLoading(true);
       const results = await AllArticles();
+      console.log(results);
       setArticles(results);
       setLoading(false);
     };
@@ -42,15 +43,17 @@ const StockPage = (props: Props) => {
           showErrorModal();
         }
       } catch (error) {
+        console.log(error);
         showErrorModal();
       }
     } else {
+      console.log("no article data");
     }
   };
   return (
-    <div className={`w-full m-0 ${isLoggedIn() ? "ps-64" : "p-0"}`}>
-      {isLoggedIn() ? <SideNav></SideNav> : <></>}
-      <NavBar></NavBar>
+    <div className={`w-full m-0 bg-[#171717] ${isLoggedIn() ? "ps-0" : "p-0"}`}>
+      {isLoggedIn() ? <SideNav/>: <></>}
+      <NavBar/>
       <div className="pt-36 px-2">
         <div className="flex justify-end py-4 container mx-auto">
           <button
@@ -59,7 +62,7 @@ const StockPage = (props: Props) => {
             }}
             className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-2 font-medium rounded"
           >
-            Ajouter Article
+            Add Article
           </button>
         </div>
         {isLoading ? (

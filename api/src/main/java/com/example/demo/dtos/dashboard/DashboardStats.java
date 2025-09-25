@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class DashboardStats {
-    private Long nombreFournisseur;
-    private Long nombreArticle;
-    private Long nombreCategorie;
-    private Long stockEpuisee;
+    private Long numberOfSuppliers;
+    private Long numberOfArticles;
+    private Long numberOfCategorys;
+    private Long outOfStock;
 }

@@ -13,6 +13,7 @@ const ProtectedRoutes = (props: Props) => {
     <>{props.children}</>
   ) : (
     <Navigate to={"/login"} state={{ from: location }} replace></Navigate>
+    // <>{props.children}</>
   );
 };
 

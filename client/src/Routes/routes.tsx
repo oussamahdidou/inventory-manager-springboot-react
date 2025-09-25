@@ -1,10 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import CategoriePage from "../Pages/CategoriePage/CategoriePage";
+import CategoryPage from "../Pages/CategoryPage/CategoryPage";
 import App from "../App";
 import DashboardPage from "../Pages/DashboardPage/DashboardPage";
 import StockPage from "../Pages/StockPage/StockPage";
-import FournisseurPage from "../Pages/FournisseurPage/FournisseurPage";
-import EntreeSortiePage from "../Pages/EntreeSortiePage/EntreeSortiePage";
+import SupplierPage from "../Pages/SupplierPage/SupplierPage";
+import EntryExitPage from "../Pages/EntryExitPage/EntryExitPage";
 import InboxPage from "../Pages/InboxPage/InboxPage";
 import NotFound from "../Pages/NotFound/NotFound";
 import LoginPage from "../Pages/LoginPage/LoginPage";
@@ -15,7 +15,14 @@ export const routes = createBrowserRouter([
     path: "/",
     element: <App></App>,
     children: [
-      { path: "", element: <DashboardPage></DashboardPage> },
+      {
+        path: "",
+        element: (
+          <ProtectedRoutes>
+            <DashboardPage></DashboardPage>
+          </ProtectedRoutes>
+        ),
+      },
       {
         path: "/stock",
         element: (
@@ -25,10 +32,10 @@ export const routes = createBrowserRouter([
         ),
       },
       {
-        path: "/fournisseur",
+        path: "/Supplier",
         element: (
           <ProtectedRoutes>
-            <FournisseurPage></FournisseurPage>
+            <SupplierPage></SupplierPage>
           </ProtectedRoutes>
         ),
       },
@@ -36,7 +43,7 @@ export const routes = createBrowserRouter([
         path: "/category",
         element: (
           <ProtectedRoutes>
-            <CategoriePage></CategoriePage>
+            <CategoryPage></CategoryPage>
           </ProtectedRoutes>
         ),
       },
@@ -44,7 +51,7 @@ export const routes = createBrowserRouter([
         path: "/flux",
         element: (
           <ProtectedRoutes>
-            <EntreeSortiePage></EntreeSortiePage>
+            <EntryExitPage></EntryExitPage>
           </ProtectedRoutes>
         ),
       },

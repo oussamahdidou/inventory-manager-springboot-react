@@ -13,35 +13,32 @@ public class MessageService implements IMessageService {
 
     public MessageService(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
-
     }
 
     @Override
-    public List<Message> GetAllMessages() {
+    public List<Message> getAllMessages() {
         return messageRepository.findAll();
     }
 
     @Override
-    public List<Message> GetAllReadMessages() {
-        return messageRepository.findByEstLu(true);
-
+    public List<Message> getAllReadMessages() {
+        return messageRepository.findByIsRead(true);
     }
 
     @Override
-    public Message MarkAsRead(Long Id) {
-        Message message = new Message();
-        message.setEstLu(true);
+    public Message markAsRead(Long id) {
+        Message message = messageRepository.findById(id).orElseThrow();
+        message.setRead(true);
         return messageRepository.save(message);
     }
 
     @Override
-    public Message GetMessageById(Long Id) {
-        return messageRepository.findById(Id).orElseThrow();
+    public Message getMessageById(Long id) {
+        return messageRepository.findById(id).orElseThrow();
     }
 
     @Override
-    public long CountReadMessages() {
-        return messageRepository.countByEstLu(false);
-
+    public long countUnreadMessages() {
+        return messageRepository.countByIsRead(false);
     }
 }

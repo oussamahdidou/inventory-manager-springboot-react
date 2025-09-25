@@ -1,17 +1,16 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 type Props = {};
 
 const SideNav = (props: Props) => {
   return (
-    <div>
+    <div className="bg-[#171717]" >
       <button
         data-drawer-target="separator-sidebar"
         data-drawer-toggle="separator-sidebar"
         aria-controls="separator-sidebar"
         type="button"
-        className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        className="inline-flex items-center p-2 mt-2 ms-3 text-sm  rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200  dark:hover:bg-gray-700 dark:focus:ring-gray-600"
       >
         <span className="sr-only">Open sidebar</span>
         <svg
@@ -33,12 +32,12 @@ const SideNav = (props: Props) => {
         className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div className="h-full px-3 py-4 overflow-y-auto bg-[#171717] dark:bg-gray-800">
           <ul className="space-y-2 font-medium">
             <li>
               <Link
                 to="/"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-400 hover:text-gray-900 rounded-lg dark:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
                   className="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -56,7 +55,7 @@ const SideNav = (props: Props) => {
             <li>
               <Link
                 to="/stock"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-400 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
                   className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -86,7 +85,7 @@ const SideNav = (props: Props) => {
             <li>
               <Link
                 to="/inbox"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-400 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
                   className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -106,7 +105,7 @@ const SideNav = (props: Props) => {
             <li>
               <Link
                 to="/flux"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-400 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
                   className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -124,14 +123,14 @@ const SideNav = (props: Props) => {
                   />
                 </svg>
                 <span className="flex-1 ms-3 whitespace-nowrap">
-                  Flux Entrées/Sorties
+                  Flux Entry/Exits
                 </span>
               </Link>
             </li>
             <li>
               <Link
-                to="/fournisseur"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                to="/Supplier"
+                className="flex items-center p-2 text-gray-400 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
                   className="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -147,14 +146,14 @@ const SideNav = (props: Props) => {
                   />
                 </svg>
                 <span className="flex-1 ms-3 whitespace-nowrap">
-                  Fournisseurs
+                  Suppliers
                 </span>
               </Link>
             </li>
             <li>
               <Link
                 to="/category"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-400 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
                   className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -175,9 +174,9 @@ const SideNav = (props: Props) => {
               </Link>
             </li>
             <li>
-              <Link
+              {/* <Link
                 to="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+                className="flex items-center p-2 text-gray-400 hover:text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <svg
                   className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
@@ -195,11 +194,11 @@ const SideNav = (props: Props) => {
                   />
                 </svg>
                 <span className="flex-1 ms-3 whitespace-nowrap">Sign In</span>
-              </Link>
+              </Link> */}
             </li>
           </ul>
-          <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700">
-            <li>
+          {/* <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700"> */}
+            {/* <li>
               <Link
                 to="#"
                 className="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
@@ -267,8 +266,8 @@ const SideNav = (props: Props) => {
                 </svg>
                 <span className="ms-3">Help</span>
               </Link>
-            </li>
-          </ul>
+            </li> */}
+          {/* </ul> */}
         </div>
       </aside>
     </div>
